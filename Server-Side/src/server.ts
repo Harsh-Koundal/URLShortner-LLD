@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { env } from "./config/env.js";
 
+import urlRoute from "./routes/urlRoute.js";
 const app = express();
 
 app.use(cors({
@@ -21,6 +22,10 @@ app.get("/",(req,res)=>{
         message: "URL Shortener API is running 🚀",
     });
 });
+
+// API Routes 
+
+app.use("/api/v1/urls",urlRoute);
 
 const PORT = env.PORT;
 app.listen(PORT,()=>{
