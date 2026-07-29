@@ -27,4 +27,21 @@ export class UrlService {
 
         throw new AppError(500,"Unable to generate a unique short URL. Please try again.");
     }
+
+
+    async getLongUrl(shortCode: string){
+        const url = await this.repository.findByShortCode(shortCode);
+
+        if(!url){
+            throw new AppError(404,"Short URL not found");
+        }
+
+        if(url.expiresAt && url.expiresAt < new Date()){
+            throw new AppError(410,"This Link Has Expired");
+        }
+
+        await this.repository.incrementClickCount(url.id);
+
+        return url
+    }
 }

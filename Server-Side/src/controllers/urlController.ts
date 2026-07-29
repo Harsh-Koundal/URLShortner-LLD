@@ -20,4 +20,17 @@ export class urlController{
             },
         });
     }
+
+
+    async redirect(req:Request, res:Response){
+        const { shortCode } = req.params;
+
+        if (typeof shortCode !== "string") {
+    throw new AppError(400, "A valid short code is required");
+  }
+
+        const url = await service.getLongUrl(shortCode);
+
+        return res.redirect(302,url.longUrl);
+    }
 }

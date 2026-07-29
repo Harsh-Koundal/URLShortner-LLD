@@ -17,4 +17,15 @@ export class UrlRepository{
             }
         })
     }
+
+    async incrementClickCount(id:string){
+        return prisma.url.update({
+            where:{id},
+            data:{
+                clickCount:{
+                    increment:1,
+                }
+            }
+        })
+    }
 }

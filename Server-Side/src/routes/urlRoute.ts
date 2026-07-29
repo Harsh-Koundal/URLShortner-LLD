@@ -10,5 +10,7 @@ const controller = new urlController();
 
 router.post("/",validate(createShortUrlSchema),asyncHandler(controller.create.bind(controller)));
 
+router.get("/:shortCode", asyncHandler(controller.redirect.bind(controller)));
+
 
 export default router;
