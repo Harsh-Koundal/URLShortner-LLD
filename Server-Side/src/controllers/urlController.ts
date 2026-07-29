@@ -3,13 +3,16 @@ import { UrlService } from "../services/urlService.js";
 import { env } from "../config/env.js";
 import { AppError } from "../utils/appError.js";
 
-const service = new UrlService();
 
-export class urlController{
+export class UrlController{
+
+    constructor(
+        private service: UrlService
+    ){}
     async create(req:Request, res:Response){
         const {longUrl} = req.body;
 
-        const url = await service.createShortUrl(longUrl);
+        const url = await this.service.createShortUrl(longUrl);
 
         return res.status(201).json({
             sucess:true,
@@ -29,7 +32,7 @@ export class urlController{
     throw new AppError(400, "A valid short code is required");
   }
 
-        const url = await service.getLongUrl(shortCode);
+        const url = await this.service.getLongUrl(shortCode);
 
         return res.redirect(302,url.longUrl);
     }

@@ -1,12 +1,9 @@
 import {prisma} from "../config/prisma.js";
 
 export class UrlRepository{
-    async create(shortCode:string, longUrl:string){
+    async create(data:{shortCode:string, longUrl:string}){
         return prisma.url.create({
-            data:{
-                shortCode,
-                longUrl,
-            },
+            data,
         });
     }
 

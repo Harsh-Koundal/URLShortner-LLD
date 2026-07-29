@@ -1,9 +1,12 @@
 import { UrlRepository } from "../repository/urlRepository.js";
 import { generateShortCode } from "../config/generateShortCode.js";
 import { AppError } from "../utils/appError.js";
+import type { IUrlReporitory } from "../repository/interfaces/IUrlRepository.js";
 
 export class UrlService {
-    private repository = new UrlRepository();
+    constructor(
+        private repository: IUrlReporitory
+    ){}
 
     async createShortUrl(longUrl: string) {
         const MAX_RETRIES = 5;
@@ -12,9 +15,10 @@ export class UrlService {
             try{
                 const shortCode = generateShortCode();
 
-                return await this.repository.create(
+                return await this.repository.create({
                     shortCode,
                     longUrl,
+                }
                 );
             }catch(error:any){
                 if(error.code==="P2002"){
