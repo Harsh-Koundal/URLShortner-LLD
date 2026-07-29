@@ -4,7 +4,6 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { validate } from "../middlewares/validate.js";
 import { createShortUrlSchema } from "../validations/urlValidation.js";
 import { urlController } from "../container.js";
-
 const router = Router();
 
 

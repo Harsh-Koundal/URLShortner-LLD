@@ -1,11 +1,10 @@
 import { UrlRepository } from "../repository/urlRepository.js";
 import { generateShortCode } from "../config/generateShortCode.js";
 import { AppError } from "../utils/appError.js";
-import type { IUrlReporitory } from "../repository/interfaces/IUrlRepository.js";
-
+import type{ IUrlRepository } from "../repository/interfaces/IUrlRepository.js";
 export class UrlService {
     constructor(
-        private repository: IUrlReporitory
+        private repository: IUrlRepository
     ){}
 
     async createShortUrl(longUrl: string) {
