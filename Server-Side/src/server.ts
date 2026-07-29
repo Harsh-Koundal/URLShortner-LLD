@@ -3,6 +3,7 @@ import cors from "cors";
 import { env } from "./config/env.js";
 
 import urlRoute from "./routes/urlRoute.js";
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 const app = express();
 
 app.use(cors({
@@ -27,6 +28,9 @@ app.get("/",(req,res)=>{
 
 app.use("/api/v1/urls",urlRoute);
 
+
+// error Handler
+app.use(errorMiddleware);
 const PORT = env.PORT;
 app.listen(PORT,()=>{
     console.log(`Server Running on Port ${env.PORT}`);
