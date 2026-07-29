@@ -4,6 +4,8 @@ import { env } from "./config/env.js";
 
 import urlRoute from "./routes/urlRoute.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { logger } from "./config/logger.js";
+import PinoHttp, { pinoHttp } from "pino-http";
 const app = express();
 
 app.use(cors({
@@ -31,9 +33,11 @@ app.use("/api/v1/urls",urlRoute);
 
 // error Handler
 app.use(errorMiddleware);
+
+app.use(pinoHttp({logger}));
 const PORT = env.PORT;
 app.listen(PORT,()=>{
-    console.log(`Server Running on Port ${env.PORT}`);
+    logger.info(`Server Running on Port ${env.PORT}`);
 });
 
 
