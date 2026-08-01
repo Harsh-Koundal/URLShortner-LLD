@@ -7,7 +7,7 @@ import { urlController } from "../container.js";
 const router = Router();
 
 
-router.post("/",validate(createShortUrlSchema),asyncHandler(urlController.create.bind(urlController)));
+router.post("/api/v1/urls",validate(createShortUrlSchema),asyncHandler(urlController.create.bind(urlController)));
 
 router.get("/:shortCode", asyncHandler(urlController.redirect.bind(urlController)));
 

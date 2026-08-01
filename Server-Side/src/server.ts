@@ -28,7 +28,7 @@ app.get("/",(req,res)=>{
 
 // API Routes 
 
-app.use("/api/v1/urls",urlRoute);
+app.use("/",urlRoute);
 
 
 // error Handler

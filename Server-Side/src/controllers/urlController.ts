@@ -18,7 +18,7 @@ export class UrlController{
             sucess:true,
             data:{
                 shortCode: url.shortCode,
-                shortUrl: `${env.BASE_URL}/api/v1/urls/${url.shortCode}`,
+                shortUrl: `${env.BASE_URL}/${url.shortCode}`,
                 longUrl:url.longUrl,
             },
         });
